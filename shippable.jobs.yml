@@ -15,7 +15,7 @@ jobs:
       - TASK: managed
 
 # TEST deployment to Amazon ECS
-  - name: yourName-ecs-deploy-test-front-end
+  - name: robertson-ecs-deploy-test-front-end
     type: deploy
     steps:
       - IN: man-front-end
@@ -26,7 +26,7 @@ jobs:
         applyTo:
           - manifest: man-front-end
             image: img-front-end
-            port: 40000
+            port: 43454
       - TASK: managed
 
 # # Create release for PROD
@@ -43,10 +43,10 @@ jobs:
 
 # move this block to separate repo to limit PROD deployment to different users
 # PROD deployment to Amazon ECS
-  - name: yourName-ecs-deploy-prod-front-end
+  - name: robertson-ecs-deploy-prod-front-end
     type: deploy
     steps:
-      - IN: yourName-ecs-deploy-test-front-end
+      - IN: robertson-ecs-deploy-test-front-end
         switch: off
       # - IN: release-front-end
       #   switch: off
@@ -58,7 +58,7 @@ jobs:
         applyTo:
           - manifest: man-front-end
             image: img-front-end
-            port: 50000
+            port: 53454
       - IN: cluster-demo-ecs
       - TASK: managed
 
